@@ -58,9 +58,8 @@ Things you may want to cover:
 | ------ | ------ | ----------- |
 |item| string |null:false|
 |id | string |null:false|
-|comments | text |null:false|
-|name | string |null:false|
-|birthday | integer |null:false|
+|address | text |null:false|
+|buyer_name | string |null:false|
 
 # Association
 
