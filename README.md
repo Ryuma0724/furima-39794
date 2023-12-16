@@ -22,3 +22,48 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+#　users テーブル
+
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+|nickname | string |null:false|
+|email | string |null:false|
+|password | string |null:false|
+|name | string |null:false|
+|birthday | integer |null:false|
+
+# Association
+
+- has_many : items
+- has_many : purchase_records
+
+# items テーブル
+
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+|item| string |null:false|
+|id | string |null:false|
+|comments | text |null:false|
+|name | string |null:false|
+|birthday | integer |null:false|
+
+# Association
+
+- belongs_to : users
+- has_many : purchase_records
+
+# purchase_record テーブル
+
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+|item| string |null:false|
+|id | string |null:false|
+|comments | text |null:false|
+|name | string |null:false|
+|birthday | integer |null:false|
+
+# Association
+
+- belongs_to : users
+- belongs_to : items
+
