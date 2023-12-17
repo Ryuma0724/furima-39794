@@ -37,8 +37,8 @@ Things you may want to cover:
 
 # Association
 
-- has_many : items
-- has_many : orders
+- has_many : item
+- has_many : order
 
 # items テーブル
 
