@@ -27,7 +27,7 @@ Things you may want to cover:
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 |nickname | string |null:false|
-|email | string |unique:true|
+|email | string |null: false,unique:true|
 |encrypted_password | string |null:false|
 |family_name | string |null:false|
 |given_name | string |null:false|
@@ -45,18 +45,15 @@ Things you may want to cover:
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 |item_name | string |null:false|
-|id |integer |null:false|
 |title | string |null:false|
 |text | content |null:false|
 |genre_id | integer |null:false|
-|created_at | date |null:false|
-|updated_at | date |null:false|
+|price| integer |null:false|
 
 # Association
 
 - belongs_to : user
-- has_one : orders
-- belongs_to : address
+- has_one : order
 
 # orders テーブル
 
@@ -69,18 +66,19 @@ Things you may want to cover:
 
 - belongs_to : user
 - belongs_to : item
-- has_one : addresses
+- has_one : address
 
 # addresses テーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 |zip_code| string |null:false|
-|prefecture| string |null:false|
-|municipalities| string |null:false|
+|prefecture_id| integer |null:false|
+|municipality| string |null:false|
 |street| string |null:false|
 |building| string |        |
-|phone_number | integer |null:false|
+|phone_number | string |null:false|
+|order| reference |null:false, foreign_key: true|
 
 # Association
 
