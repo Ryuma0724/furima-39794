@@ -27,66 +27,61 @@ Things you may want to cover:
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 |nickname | string |null:false|
-|email | string |null:false|
-|password | string |null:false|
-|name | string |null:false|
-|name_kana | string |null:false|
-|birthday | integer |null:false|
+|email | string |unique:true|
+|encrypted_password | string |null:false|
+|family_name | string |null:false|
+|given_name | string |null:false|
+|family_name_kana | string |null:false|
+|given_name_kana | string |null:false|
+|birthday | date |null:false|
 
 # Association
 
 - has_many : items
 - has_many : orders
-- has_many : addresses
 
 # items テーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-|Image| string |null:false|
-|Item_name | string |null:false|
-|text | text |null:false|
-|name | string |null:false|
-|category|string|null:false|
-|condition | string |null:false|
-|delivery_charge | string |null:false|
-|shipping_area | string |null:false|
-|lead_time | integer |null:false|
-|price | integer |null:false|
+|item_name | string |null:false|
+|id |integer |null:false|
+|title | string |null:false|
+|text | content |null:false|
+|genre_id | integer |null:false|
+|created_at | date |null:false|
+|updated_at | date |null:false|
 
 # Association
 
-- belongs_to : users
-- belongs_to : orders
-- belongs_to : addresses
+- belongs_to : user
+- has_one : orders
+- belongs_to : address
 
 # orders テーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-|buyer| string |null:false|
-|seller | string |null:false|
-|Item_name | string |null:false|
-|address | string |null:false|
-|price | integer |null:false|
+|user| reference |null:false, foreign_key: true|
+|item| reference |null:false, foreign_key: true|
 
 # Association
 
-- belongs_to : users
-- belongs_to : items
-- belongs_to : addresses
+- belongs_to : user
+- belongs_to : item
+- has_one : addresses
 
 # addresses テーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-|address| string |null:false|
-|Item_name | string |null:false|
-|order_date | integer |null:false|
-|delivery_date | integer |null:false|
+|zip_code| string |null:false|
+|prefecture| string |null:false|
+|municipalities| string |null:false|
+|street| string |null:false|
+|building| string |        |
+|phone_number | integer |null:false|
 
 # Association
 
-- belongs_to : users
-- belongs_to : items
-- belongs_to : orders
+- belongs_to : order
