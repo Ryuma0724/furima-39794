@@ -48,6 +48,10 @@ Things you may want to cover:
 |title | string |null:false|
 |text | content |null:false|
 |genre_id | integer |null:false|
+|condition_id | integer |null:false|
+|charge_id| integer |null:false|
+|area_id | integer |null:false|
+|lead_time_id | integer |null:false|
 |price| integer |null:false|
 
 # Association
