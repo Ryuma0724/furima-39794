@@ -46,4 +46,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_08_020946) do
   end
 
   add_foreign_key "items", "users"
+
 end
