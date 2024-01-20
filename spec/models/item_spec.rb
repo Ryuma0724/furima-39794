@@ -38,7 +38,7 @@ describe '新規出品登録' do
       expect(@item.errors.full_messages).to include("Area_id can't be blank")
     end
     it 'leadtime_idが空では登録できない' do
-      @item.leadtime_id_id = ''
+      @item.leadtime_id = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Leadtime_id can't be blank")
     end
