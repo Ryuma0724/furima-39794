@@ -48,3 +48,4 @@ describe '新規出品登録' do
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
   end
+end
