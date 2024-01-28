@@ -78,10 +78,10 @@ RSpec.describe AddressOrder, type: :model do
         @address_order.valid?
         expect(@address_order.errors.full_messages).to include("User can't be blank")
       end
-      it 'product_idが紐づいていなければ購入できないこと' do
+      it 'order_idが紐づいていなければ購入できないこと' do
         @address_order.order_id = ''
         @address_order.valid?
-        expect(@address_order.errors.full_messages).to include("Product can't be blank")
+        expect(@address_order.errors.full_messages).to include("Order can't be blank")
       end
   
 end

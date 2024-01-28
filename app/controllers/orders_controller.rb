@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     @address_order = AddressOrder.new(address_params)
     if @address_order.valid?
-      pay.item
+      pay_item
       @address_order.save
       return redirect_to root_path
     else
@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      amount: address_params[:price],  # 商品の値段
+      amount: @item.price,  # 商品の値段
       card: address_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
