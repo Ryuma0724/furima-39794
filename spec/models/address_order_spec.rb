@@ -4,7 +4,9 @@ RSpec.describe AddressOrder, type: :model do
   describe '配送先情報の保存' do
     before do
       user = FactoryBot.create(:user)
-      @address_order = FactoryBot.build(:address_order, user_id: user.id)
+      item = FactoryBot.create(:item)
+      @address_order = FactoryBot.build(:address_order, user_id: user.id, item_id: item.id)
+      sleep 0.1
     end
 
     context '内容に問題ない場合' do
@@ -18,25 +20,25 @@ RSpec.describe AddressOrder, type: :model do
     end
 
     context '内容に問題がある場合' do
-      it 'postal_codeが空だと保存できないこと' do
-        @address_order.postal_code = ''
+      it 'zip_codeが空だと保存できないこと' do
+        @address_order.zip_code = ''
         @address_order.valid?
-        expect(@address_order.errors.full_messages).to include("Postal code can't be blank")
+        expect(@address_order.errors.full_messages).to include("Zip code can't be blank")
       end
-      it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
-        @address_order.postal_code = '1234567'
+      it 'zip_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
+        @address_order.zip_code = '1234567'
         @address_order.valid?
-        expect(@address_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+        expect(@address_order.errors.full_messages).to include('Zip code is invalid. Include hyphen(-)')
       end
-      it 'prefectureを選択していないと保存できないこと' do
+      it 'area_idを選択していないと保存できないこと' do
         @address_order.area_id = ''
         @address_order.valid?
-        expect(@address_order.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@address_order.errors.full_messages).to include("Area can't be blank")
       end
-      it 'prefectureが「----」では保存できないこと' do
+      it 'area_idが「----」では保存できないこと' do
         @address_order.area_id = '1'
         @address_order.valid?
-        expect(@address_order.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@address_order.errors.full_messages).to include("Area can't be blank")
       end
       it 'municipalityが空だと保存できないこと' do
         @address_order.municipality = ''
@@ -64,7 +66,7 @@ RSpec.describe AddressOrder, type: :model do
         expect(@address_order.errors.full_messages).to include("Phone number is invalid")
       end
       it 'phone_numberが半角数値でないと保存できないこと' do
-        @address_order.phone_number = '09012341234'
+        @address_order.phone_number = '９９９９９９９９９９'
         @address_order.valid?
         expect(@address_order.errors.full_messages).to include("Phone number is invalid")
       end
@@ -78,10 +80,11 @@ RSpec.describe AddressOrder, type: :model do
         @address_order.valid?
         expect(@address_order.errors.full_messages).to include("User can't be blank")
       end
-      it 'order_idが紐づいていなければ購入できないこと' do
-        @address_order.order_id = ''
+      it 'item_idが紐づいていなければ購入できないこと' do
+        @address_order.item_id = ''
         @address_order.valid?
-        expect(@address_order.errors.full_messages).to include("Order can't be blank")
+        expect(@address_order.errors.full_messages).to include("Item can't be blank")
       end
-  
+    end  
+  end
 end
